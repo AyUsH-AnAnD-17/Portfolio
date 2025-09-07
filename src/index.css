@@ -1,0 +1,623 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Sunrise/Sunset Theme */
+
+@layer base {
+  :root {
+    /* Light Theme - Sunrise */
+    --background: 43 100% 95%;
+    --foreground: 25 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 25% 15%;
+
+    --primary: 25 85% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 100% 88%;
+    --secondary-foreground: 25 25% 15%;
+
+    --muted: 45 50% 92%;
+    --muted-foreground: 25 15% 45%;
+
+    --accent: 35 95% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 45 30% 85%;
+    --input: 45 30% 90%;
+    --ring: 25 85% 55%;
+
+    --radius: 1rem;
+
+    /* Sunrise Colors */
+    --sunrise-sky: 43 100% 88%;
+    --sunrise-sun: 45 100% 65%;
+    --sunrise-glow: 35 95% 75%;
+    --sunrise-cloud: 0 0% 95%;
+
+    /* Gradients */
+    --gradient-sunrise: linear-gradient(135deg, hsl(43 100% 88%) 0%, hsl(35 95% 75%) 35%, hsl(25 85% 65%) 70%, hsl(15 90% 75%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(35 95% 65%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9) 0%, hsl(45 50% 98% / 0.8) 100%);
+    
+    /* Shadows */
+    --shadow-sunrise: 0 20px 40px hsl(25 85% 55% / 0.15);
+    --shadow-card: 0 10px 30px hsl(25 25% 15% / 0.08);
+    --shadow-hero: 0 25px 50px hsl(25 85% 55% / 0.25);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    /* Dark Theme - Sunset with Stars */
+    --background: 245 25% 8%;
+    --foreground: 60 30% 92%;
+
+    --card: 245 20% 12%;
+    --card-foreground: 60 30% 92%;
+
+    --popover: 245 20% 12%;
+    --popover-foreground: 60 30% 92%;
+
+    --primary: 280 80% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 245 15% 18%;
+    --secondary-foreground: 60 30% 92%;
+
+    --muted: 245 15% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 290 85% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 245 15% 20%;
+    --input: 245 15% 18%;
+    --ring: 280 80% 65%;
+
+    /* Sunset/Night Colors */
+    --sunset-sky: 245 35% 15%;
+    --sunset-sun: 15 100% 65%;
+    --sunset-glow: 290 85% 70%;
+    --star-glow: 60 100% 85%;
+
+    /* Dark Gradients */
+    --gradient-sunset: linear-gradient(135deg, hsl(245 35% 15%) 0%, hsl(260 40% 25%) 25%, hsl(290 60% 35%) 60%, hsl(15 90% 45%) 85%, hsl(25 100% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(280 80% 65%) 0%, hsl(290 85% 70%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(245 20% 12% / 0.95) 0%, hsl(260 25% 15% / 0.9) 100%);
+    
+    /* Dark Shadows */
+    --shadow-sunset: 0 20px 40px hsl(280 80% 65% / 0.2);
+    --shadow-card: 0 10px 30px hsl(245 25% 8% / 0.3);
+    --shadow-hero: 0 25px 50px hsl(280 80% 65% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-500;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Sky Animation Background */
+  .sky-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--gradient-sunrise);
+    transition: var(--transition-smooth);
+  }
+
+  .dark .sky-background {
+    background: var(--gradient-sunset);
+  }
+
+  /* Floating Sun/Moon */
+  .celestial-body {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, hsl(45 100% 75%), hsl(25 100% 65%));
+    box-shadow: 0 0 60px hsl(45 100% 65% / 0.6);
+    animation: celestial-float 8s ease-in-out infinite;
+    top: 15%;
+    right: 10%;
+  }
+
+  .dark .celestial-body {
+    background: radial-gradient(circle at 30% 30%, hsl(15 100% 75%), hsl(290 85% 70%));
+    box-shadow: 0 0 80px hsl(290 85% 70% / 0.5);
+  }
+
+  /* Stars for dark mode */
+  .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(60 100% 85%), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(60 100% 85%), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(60 100% 85%), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(60 100% 85%), transparent),
+      radial-gradient(2px 2px at 160px 30px, hsl(60 100% 85%), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .dark .stars {
+    opacity: 1;
+  }
+
+  /* Animated Birds */
+  .birds-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .bird {
+    position: absolute;
+    width: 8px;
+    height: 6px;
+    background: hsl(var(--foreground));
+    clip-path: polygon(0% 50%, 25% 0%, 50% 50%, 75% 0%, 100% 50%, 75% 100%, 50% 50%, 25% 100%);
+    opacity: 0.8;
+  }
+
+  .bird-1 {
+    top: 20%;
+    animation: bird-fly-1 25s linear infinite;
+  }
+
+  .bird-2 {
+    top: 25%;
+    animation: bird-fly-2 30s linear infinite 5s;
+  }
+
+  .bird-3 {
+    top: 18%;
+    animation: bird-fly-3 35s linear infinite 10s;
+  }
+
+  .bird-4 {
+    top: 22%;
+    animation: bird-fly-4 28s linear infinite 15s;
+  }
+
+  .bird-5 {
+    top: 27%;
+    animation: bird-fly-5 32s linear infinite 20s;
+  }
+
+  /* In dark mode, birds go home */
+  .dark .bird {
+    animation-direction: reverse;
+    opacity: 0.3;
+  }
+
+  /* Animated People */
+  .people-container {
+    position: absolute;
+    bottom: 15%;
+    width: 100%;
+    height: 20%;
+    pointer-events: none;
+  }
+
+  .person {
+    position: absolute;
+    width: 12px;
+    height: 24px;
+    background: hsl(var(--foreground));
+    border-radius: 50% 50% 0 0;
+    opacity: 0.7;
+  }
+
+  .person::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--foreground));
+    border-radius: 0 0 50% 50%;
+  }
+
+  .person-walking-1 {
+    bottom: 0;
+    animation: person-walk-1 20s linear infinite;
+  }
+
+  .person-walking-2 {
+    bottom: 0;
+    animation: person-walk-2 25s linear infinite 8s;
+  }
+
+  .person-walking-3 {
+    bottom: 0;
+    animation: person-walk-3 30s linear infinite 15s;
+  }
+
+  /* In dark mode, people go inside */
+  .dark .person {
+    animation-direction: reverse;
+    opacity: 0.4;
+  }
+
+  /* Clouds */
+  .clouds-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .cloud {
+    position: absolute;
+    background: hsl(var(--sunrise-cloud));
+    border-radius: 50px;
+    opacity: 0.6;
+  }
+
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: hsl(var(--sunrise-cloud));
+    border-radius: 50px;
+  }
+
+  .cloud-1 {
+    width: 80px;
+    height: 30px;
+    top: 15%;
+    left: 10%;
+    animation: cloud-drift-1 40s linear infinite;
+  }
+
+  .cloud-1::before {
+    width: 50px;
+    height: 40px;
+    top: -20px;
+    left: 10px;
+  }
+
+  .cloud-1::after {
+    width: 40px;
+    height: 35px;
+    top: -15px;
+    right: 15px;
+  }
+
+  .cloud-2 {
+    width: 60px;
+    height: 25px;
+    top: 25%;
+    left: 60%;
+    animation: cloud-drift-2 50s linear infinite 10s;
+  }
+
+  .cloud-2::before {
+    width: 40px;
+    height: 30px;
+    top: -15px;
+    left: 8px;
+  }
+
+  .cloud-2::after {
+    width: 35px;
+    height: 28px;
+    top: -12px;
+    right: 12px;
+  }
+
+  .cloud-3 {
+    width: 70px;
+    height: 28px;
+    top: 20%;
+    left: 80%;
+    animation: cloud-drift-3 45s linear infinite 20s;
+  }
+
+  .cloud-3::before {
+    width: 45px;
+    height: 35px;
+    top: -18px;
+    left: 12px;
+  }
+
+  .cloud-3::after {
+    width: 38px;
+    height: 32px;
+    top: -14px;
+    right: 18px;
+  }
+
+  .dark .cloud {
+    background: hsl(245 20% 25%);
+    opacity: 0.3;
+  }
+
+  .dark .cloud::before,
+  .dark .cloud::after {
+    background: hsl(245 20% 25%);
+  }
+
+  /* Horizon Line */
+  .horizon-line {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.3), transparent);
+  }
+
+  /* Silhouettes */
+  .silhouette-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    pointer-events: none;
+  }
+
+  .tree, .building {
+    position: absolute;
+    bottom: 0;
+    background: hsl(var(--foreground) / 0.8);
+  }
+
+  .tree-1 {
+    left: 15%;
+    width: 20px;
+    height: 60px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .tree-2 {
+    left: 35%;
+    width: 25px;
+    height: 70px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .tree-3 {
+    right: 20%;
+    width: 18px;
+    height: 55px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .building-1 {
+    left: 50%;
+    width: 40px;
+    height: 80px;
+    clip-path: polygon(0% 100%, 0% 20%, 20% 20%, 20% 0%, 80% 0%, 80% 20%, 100% 20%, 100% 100%);
+  }
+
+  /* Hero Section Styles */
+  .hero-title {
+    @apply text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    background-size: 200% 100%;
+    animation: gradient-flow 3s ease-in-out infinite;
+  }
+
+  .hero-subtitle {
+    @apply text-xl md:text-2xl text-muted-foreground/80 font-medium;
+  }
+
+  /* Card Styles */
+  .glass-card {
+    @apply backdrop-blur-lg border border-white/20;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hero);
+  }
+
+  /* Button Variants */
+  .btn-hero {
+    @apply px-8 py-4 rounded-full font-semibold text-lg;
+    background: var(--gradient-hero);
+    box-shadow: var(--shadow-sunrise);
+    transition: var(--transition-spring);
+  }
+
+  .btn-hero:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-hero);
+  }
+
+  /* Section Headers */
+  .section-header {
+    @apply text-4xl md:text-5xl font-bold text-center mb-16;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Skill Pills */
+  .skill-pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .skill-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Timeline */
+  .timeline-line {
+    @apply absolute left-4 top-8 bottom-0 w-0.5;
+    background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .timeline-dot {
+    @apply absolute left-2 top-6 w-4 h-4 rounded-full border-4 border-background;
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 4px hsl(var(--primary) / 0.2);
+  }
+}
+
+@keyframes celestial-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* Bird Flight Animations */
+@keyframes bird-fly-1 {
+  0% { left: -10px; transform: translateY(0) scaleX(1); }
+  25% { transform: translateY(-5px) scaleX(1); }
+  50% { transform: translateY(5px) scaleX(1); }
+  75% { transform: translateY(-3px) scaleX(1); }
+  100% { left: 110%; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes bird-fly-2 {
+  0% { left: -10px; transform: translateY(0) scaleX(1); }
+  30% { transform: translateY(-8px) scaleX(1); }
+  60% { transform: translateY(3px) scaleX(1); }
+  80% { transform: translateY(-2px) scaleX(1); }
+  100% { left: 110%; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes bird-fly-3 {
+  0% { left: -10px; transform: translateY(0) scaleX(1); }
+  20% { transform: translateY(-4px) scaleX(1); }
+  40% { transform: translateY(6px) scaleX(1); }
+  70% { transform: translateY(-6px) scaleX(1); }
+  100% { left: 110%; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes bird-fly-4 {
+  0% { left: -10px; transform: translateY(0) scaleX(1); }
+  35% { transform: translateY(-7px) scaleX(1); }
+  65% { transform: translateY(4px) scaleX(1); }
+  85% { transform: translateY(-3px) scaleX(1); }
+  100% { left: 110%; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes bird-fly-5 {
+  0% { left: -10px; transform: translateY(0) scaleX(1); }
+  25% { transform: translateY(-6px) scaleX(1); }
+  55% { transform: translateY(7px) scaleX(1); }
+  75% { transform: translateY(-4px) scaleX(1); }
+  100% { left: 110%; transform: translateY(0) scaleX(1); }
+}
+
+/* People Walking Animations */
+@keyframes person-walk-1 {
+  0% { left: -20px; }
+  100% { left: 110%; }
+}
+
+@keyframes person-walk-2 {
+  0% { left: -20px; }
+  100% { left: 110%; }
+}
+
+@keyframes person-walk-3 {
+  0% { left: -20px; }
+  100% { left: 110%; }
+}
+
+/* Cloud Drift Animations */
+@keyframes cloud-drift-1 {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+@keyframes cloud-drift-2 {
+  0% { transform: translateX(-80px); }
+  100% { transform: translateX(calc(100vw + 80px)); }
+}
+
+@keyframes cloud-drift-3 {
+  0% { transform: translateX(-90px); }
+  100% { transform: translateX(calc(100vw + 90px)); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out forwards;
+}
