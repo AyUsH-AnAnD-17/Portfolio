@@ -49,11 +49,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/10 text-center">
-          <p className="text-sm text-muted-foreground/70 flex items-center justify-center gap-2">
-            Built with <Heart className="h-4 w-4 text-red-500" /> using React, TypeScript & Tailwind CSS
+        <div className="mt-8 pt-6 border-t border-white/20 text-center">
+          <p className="text-sm text-gray-800 flex items-center justify-center gap-2">
+            Built using React, TypeScript & Tailwind CSS
           </p>
-          <p className="text-xs text-muted-foreground/50 mt-2">
+          <p className="text-xs text-gray-800 mt-2">
             © 2025 Ayush Anand. All rights reserved.
           </p>
         </div>

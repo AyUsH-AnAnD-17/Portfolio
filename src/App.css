@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Disable transitions for text elements */
+p, a, span, h1, h2, h3, h4, h5, h6 {
+  @apply transition-none;
+}

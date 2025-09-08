@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, ArrowDown } from "lucide-react";
+import { Eye, ArrowDown } from "lucide-react";
 
 export function Hero() {
   const scrollToAbout = () => {
@@ -30,33 +30,16 @@ export function Hero() {
             </Button>
             <Button 
               variant="outline" 
-              className="glass-card border-white/20 hover:border-white/40"
+              className="glass-card border-white/20 hover:border-white/40 w-full sm:w-auto"
               asChild
             >
-              <a href="/resume.pdf" download>
-                <Download className="mr-2 h-5 w-5" />
-                Download Resume
+              <a href="/resume.pdf"
+               target="_blank"
+               rel="noopener noreferrer">
+                <Eye className="mr-2 h-5 w-5"  />
+                View Resume
               </a>
             </Button>
-          </div>
-        </div>
-
-        <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <div className="glass-card p-6 rounded-2xl max-w-md mx-auto">
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-primary">3+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-primary">50+</div>
-                <div className="text-sm text-muted-foreground">Projects Built</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-primary">10k+</div>
-                <div className="text-sm text-muted-foreground">Users Served</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

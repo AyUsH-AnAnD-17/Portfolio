@@ -7,7 +7,7 @@ export function About() {
     {
       icon: Code,
       title: "Full-Stack Development",
-      description: "Expert in React.js, Angular, Node.js, and .NET Core with TypeScript"
+      description: "Expert in React.js, Node.js, Express.js and .NET Core with Angular and TypeScript"
     },
     {
       icon: Database,
@@ -17,12 +17,12 @@ export function About() {
     {
       icon: Cloud,
       title: "Cloud & DevOps",
-      description: "AWS, Docker, microservices architecture, and CI/CD pipelines"
+      description: "AWS, Docker, Microservices Architecture, and CI/CD pipelines"
     },
     {
       icon: Zap,
       title: "AI/ML Integration",
-      description: "LangChain, LLMs, RAG implementation, and prompt engineering"
+      description: "LangChain, LLMs, RAG implementation, and Prompt Engineering"
     }
   ];
 
@@ -34,14 +34,16 @@ export function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-left">
             <p className="text-lg text-muted-foreground/80 leading-relaxed mb-6">
-              I'm a passionate Full-Stack Developer with over 3 years of experience building 
-              enterprise-grade web applications. Currently working as a Software Development 
-              Consultant at LTIMindtree, I specialize in creating scalable solutions that serve 
-              thousands of users.
+              I'm a passionate Full-Stack Developer with over 2 years of experience building 
+              enterprise-grade web applications. Currently working on scaling my family business
+              in the transport and commute industry by taking it online, building a user-friendly 
+              platform from the ground up, and integrating secure payment gateways using the MERN stack.
+              I have also worked at LTIMindtree for over a year, where I gained experience in the .NET 
+              stack with JavaScript and Angular TypeScript on the frontend, and SQL Server as the database.
             </p>
             <p className="text-lg text-muted-foreground/80 leading-relaxed mb-6">
               My expertise spans across modern web technologies, from React and Angular on the 
-              frontend to Node.js and .NET Core on the backend. I'm particularly passionate 
+              frontend to Express.js and .NET Core on the backend. I'm particularly passionate 
               about system design, performance optimization, and integrating AI/ML capabilities 
               into web applications.
             </p>

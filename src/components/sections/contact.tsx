@@ -96,7 +96,7 @@ export function Contact() {
                       className="glass-card border-white/20 hover:border-white/40 w-full"
                       asChild
                     >
-                      <a href="/resume.pdf" download>
+                      <a href="/resume.pdf" download="AyushAnand_Resume.pdf">
                         Download Resume
                       </a>
                     </Button>

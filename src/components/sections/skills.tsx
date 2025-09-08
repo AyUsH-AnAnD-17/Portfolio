@@ -16,7 +16,7 @@ export function Skills() {
     {
       title: "Frontend",
       icon: Palette,
-      skills: ["React.js", "Angular", "JavaScript", "TypeScript", "HTML5", "CSS3", "Bootstrap", "Responsive Design"]
+      skills: ["React.js", "Angular", "JavaScript", "TypeScript", "HTML5", "Vite", "Tailwind CSS", "Responsive Design"]
     },
     {
       title: "Backend",
